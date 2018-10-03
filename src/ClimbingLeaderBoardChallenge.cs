@@ -4,7 +4,7 @@ namespace hackerrank_problems
 {
     public class ClimbingLeaderBoardChallenge
     {
-        private static int[] ClimbingLeaderboard(int[] scores, int[] alice)
+        public static int[] ClimbingLeaderboard(int[] scores, int[] alice)
         {
             //entry point logic
             /*var scores = new[] {100, 50, 40, 40, 20, 10};
