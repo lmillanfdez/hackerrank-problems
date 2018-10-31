@@ -9,6 +9,7 @@
   <ItemGroup>
     <Compile Remove="src\DiagonalDifference.cs" />
     <Compile Remove="dev\**" />
+    <Compile Remove="src\LevelOrderTraversalChallenge.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="dev\**" />
