@@ -1,11 +1,17 @@
-﻿namespace hackerrank_problems
+﻿using System;
+
+using hackerrank_problems;
+using hackerrank_problems.utils;
+
+namespace hackerrank_problems
 {
     class Program
     {
         static void Main(string[] args)
         {
-            //here you may test a challenge's static-method
+            var downToZero2 = new DownToZeroII();
             
+            Console.Write(downToZero2.downToZero(4));            
         }
    }
 }
