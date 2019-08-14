@@ -1,7 +1,6 @@
 ﻿using System;
 
 using hackerrank_problems;
-using hackerrank_problems.utils;
 
 namespace hackerrank_problems
 {
@@ -9,9 +8,8 @@ namespace hackerrank_problems
     {
         static void Main(string[] args)
         {
-            var downToZero2 = new DownToZeroII();
-            
-            Console.Write(downToZero2.downToZero(4));            
+            // Console.Write(DownToZeroII.downToZero(614346));            
+            // Console.Write(DownToZeroII.downToZero(16));            
         }
    }
 }

@@ -5,10 +5,12 @@ namespace hackerrank_problems
 {
     class DownToZeroII
     {
-        private Dictionary<int, int> _memory = new Dictionary<int, int>();
+        private static Dictionary<int, int> _memory = new Dictionary<int, int>();
 
-        public int downToZero(int n)
+        public static int downToZero(int n)
         {
+            Console.Write("{0} -> ", n);
+
             if(n == 0)
                 return 0;
 
@@ -18,42 +20,44 @@ namespace hackerrank_problems
                 return _result;
 
             var _maximumDivider = GetMaximunDividerOf(n);
-            _result = downToZero(n - 1);
-
-            if(_maximumDivider > 1)
-            {
-                _maximumDivider = n / _maximumDivider;
-                _result = Math.Min(downToZero(_maximumDivider), _result);
-            }
+            _result = _maximumDivider > 1 ? downToZero(_maximumDivider) : downToZero(n - 1);
 
             _memory.Add(n, ++_result);
             return _result;
         }
 
-        private int GetMaximunDividerOf(int n)
+        private static int GetMaximunDividerOf(int n)
         {
             if(n == 1 || n == 2 || n == 3)
                 return 1;
 
-            var _maximumDivider = 1;
             var _incrementalStep = 1;
+            var _squareRoot = Math.Sqrt(n);
+            int _firstNumber;
+            
+            if(_squareRoot > (_firstNumber = Convert.ToInt32(_squareRoot)))
+                _firstNumber++;
 
-            if(n % 2 == 0)
-                _maximumDivider = 2;
-            else
-                _incrementalStep = 2;
+            if(n % 2 > 0)
+            {
+                if(_firstNumber % 2 == 0)
+                    _firstNumber++;
+                    
+                _incrementalStep++;
+            }
 
-            var _tempDivider = _maximumDivider + _incrementalStep;
+            var _tempDivider = _firstNumber;
+            var halfOfN = Convert.ToInt32(n / 2);
 
-            while(_tempDivider <= Math.Floor(Math.Sqrt(n)))
+            while(_tempDivider <= halfOfN)
             {
                 if(n % _tempDivider == 0)
-                    _maximumDivider = _tempDivider;
+                    break;
 
                 _tempDivider += _incrementalStep;
             }
 
-            return _maximumDivider;
+            return _tempDivider <= halfOfN ? _tempDivider : 1;
         }
     }
 }
