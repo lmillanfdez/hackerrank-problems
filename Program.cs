@@ -1,5 +1,4 @@
 ﻿using System;
-
 using hackerrank_problems;
 
 namespace hackerrank_problems

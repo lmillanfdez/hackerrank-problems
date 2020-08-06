@@ -2,13 +2,14 @@
 
 namespace hackerrank_problems
 {
-    public class DiagonalDifferenceClass
+    class DiagonalDifferenceChallenge
     {
-        public static int DiagonalDifference(int[][] a)
+        public static int diagonalDifference(int[][] a)
         {
             //entry point logic
             /*var testingArray = new []{new []{11, 2, 4}, new []{4, 5, 6}, new []{10, 8, -12}};
-            var absoulteDifference = DiagonalDifference(testingArray);*/
+            var absoulteDifference = DiagonalDifferenceChallenge.diagonalDifference(testingArray);
+            Console.WriteLine(absoulteDifference);*/
             
             var aDiagonal = 0;
             var bDiagonal = 0;
