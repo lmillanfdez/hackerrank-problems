@@ -5,59 +5,83 @@ namespace hackerrank_problems
 {
     class DownToZeroII
     {
-        private static Dictionary<int, int> _memory = new Dictionary<int, int>();
-
         public static int downToZero(int n)
         {
-            Console.Write("{0} -> ", n);
+            //entry point logic
+            /* Console.Write(DownToZeroII.downToZero(94)); */
 
-            if(n == 0)
-                return 0;
+            if(n <= 4)
+                return n <= 3 ? n : --n;
 
-            int _result;
+            var memory = new Dictionary<int, bool>();
 
-            if(_memory.TryGetValue(n, out _result))
-                return _result;
-
-            var _maximumDivider = GetMaximunDividerOf(n);
-            _result = _maximumDivider > 1 ? downToZero(_maximumDivider) : downToZero(n - 1);
-
-            _memory.Add(n, ++_result);
-            return _result;
-        }
-
-        private static int GetMaximunDividerOf(int n)
-        {
-            if(n == 1 || n == 2 || n == 3)
-                return 1;
-
-            var _incrementalStep = 1;
-            var _squareRoot = Math.Sqrt(n);
-            int _firstNumber;
+            int currentDivider;
+            int currentLevelAmount = 1;
+            int nextLevelAmount = 0;
+            int amountLevels = 1;
             
-            if(_squareRoot > (_firstNumber = Convert.ToInt32(_squareRoot)))
-                _firstNumber++;
+            var queue = new Queue<int>(new []{n});
 
-            if(n % 2 > 0)
+            while(queue.TryDequeue(out currentDivider))
             {
-                if(_firstNumber % 2 == 0)
-                    _firstNumber++;
-                    
-                _incrementalStep++;
+                var currentDividerMinusOne = currentDivider - 1;
+
+                if(currentDividerMinusOne == 4 || currentDividerMinusOne == 3)
+                {
+                    return amountLevels + 3;
+                }
+                else if(!memory.GetValueOrDefault(currentDividerMinusOne))
+                {
+                    memory.Add(currentDividerMinusOne, true);
+                    queue.Enqueue(currentDividerMinusOne);
+
+                    nextLevelAmount++;
+                }
+
+                var incrementalStep = 1;
+                var squareRoot = Convert.ToInt32(Math.Sqrt(currentDivider));
+                var tempDivider = 2;
+                int complementaryDivider;
+                
+                if(currentDivider % 2 > 0)
+                {
+                    tempDivider = 3;
+                    incrementalStep = 2;
+                }
+
+                while(tempDivider <= squareRoot)
+                {
+                    if(currentDivider % tempDivider == 0)
+                    {
+                        complementaryDivider = currentDivider / tempDivider;
+
+                        if(complementaryDivider == 4 || complementaryDivider == 3)
+                        {
+                            return amountLevels + 3;
+                        }
+                        else if(!memory.GetValueOrDefault(complementaryDivider))
+                        {
+                            memory.Add(complementaryDivider, true);
+                            queue.Enqueue(complementaryDivider);
+
+                            nextLevelAmount++;
+                        }
+                    }
+
+                    tempDivider += incrementalStep;
+                }
+
+                if(--currentLevelAmount == 0)
+                {
+                    currentLevelAmount = nextLevelAmount;
+                    nextLevelAmount = 0;
+
+                    if(currentLevelAmount > 0)
+                        amountLevels++;
+                }
             }
 
-            var _tempDivider = _firstNumber;
-            var halfOfN = Convert.ToInt32(n / 2);
-
-            while(_tempDivider <= halfOfN)
-            {
-                if(n % _tempDivider == 0)
-                    break;
-
-                _tempDivider += _incrementalStep;
-            }
-
-            return _tempDivider <= halfOfN ? _tempDivider : 1;
+            return amountLevels;
         }
     }
 }

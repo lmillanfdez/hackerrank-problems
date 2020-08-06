@@ -8,8 +8,6 @@ namespace hackerrank_problems
     {
         static void Main(string[] args)
         {
-            // Console.Write(DownToZeroII.downToZero(614346));            
-            // Console.Write(DownToZeroII.downToZero(16));            
         }
    }
 }
