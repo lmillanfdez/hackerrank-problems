@@ -13,7 +13,9 @@ namespace hackerrank_problems
             Console.WriteLine(dateInMilitaryFormat);*/
             
             DateTime date = DateTime.Parse(s);
-            return date.ToString("HH:mm:ss");
+            var result = date.ToString("HH:mm:ss");
+            
+            return result;
         }
     }
 }
