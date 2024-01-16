@@ -10,6 +10,14 @@ namespace hackerrank_problems
             //entry point logic
             /* Console.Write(DownToZeroII.downToZero(94)); */
 
+            /*
+            It all comes down to seeing the entire process as a tree where n is the root node.
+            Child nodes of a node x are (x - 1) and all the dividers of x lesser or equal than sqrt(x).
+            Finally, we use a BFS for computing the shortest distance between the root and nodes 
+            having 2 or 3 as values, as we already now how many steps we need for reducing them to zero.
+            We can use a Dictionary for keeping track of values already processed, thus simplyfing the 
+            entire process.
+            */
             if(n <= 4)
                 return n <= 3 ? n : --n;
 
