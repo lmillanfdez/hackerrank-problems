@@ -5,6 +5,7 @@ using System.IO;
 namespace hackerrank_problems;
 
 class QueueUsingTwoStacks {
+    /*
     static void Main(String[] args) {
         var numLines = Convert.ToInt32(Console.ReadLine().Trim());
         var customQueue = new CustomQueue<int>();
@@ -31,6 +32,7 @@ class QueueUsingTwoStacks {
         
         Console.WriteLine(string.Join('\n', results));
     }
+    */
 }
 
 class CustomQueue<T>
